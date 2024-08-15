@@ -21,7 +21,7 @@ To run this project locally, follow these steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/product-sorting-dashboard.git
+git clone https://github.com/abhijeetbhaskar/product-sorting-dashboard.git
 cd product-sorting-dashboard
 ```
 
