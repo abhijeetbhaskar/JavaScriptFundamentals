@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div id='div'></div>
+</body>
+<script>
+	let productMaster=[{id:'A441',name:'Pepsi',category:'Soft Drink', price:15,   quantity:2},
+                            {id:'B234',name:'Coke', category:'Soft Drink', price:10,   quantity:8},
+                            {id:'A617',name:'Mirinda', category:'Soft Drink', price:20,   quantity:20},
+                            {id:'B003',name:'Sprite', category:'Soft Drink', price:16,   quantity:5},
+                            {id:'B225',name:'Minute Maid', category:'Soft Drink', price:25,   quantity:12},
+                            {id:'A742',name:'5Star', category:'Chocloate',  price:10,   quantity:3},
+                            {id:'B388',name:'Appy', category:'Soft Drink', price:35,   quantity:9},
+                            {id:'A899',name:'Gems', category:'Chocloate',   price:12,   quantity:11},
+                            {id:'B635',name:'KitKat',   category:'Chocloate',   price:15,   quantity:7},
+                            {id:'B408',name:'Perk', category:'Chocloate',   price:8,    quantity:15},
+                            {id:'A354',name:'Dairy  Milk',  category:'Chocloate',   price:30,   quantity:4}]
+	show();
+	
+	function show(){
+		let len=productMaster.length
+		let str=''
+		var fin="<div><div <button class='cellHeader' onclick=byName()>Name</button></div>"+"<div <button class='cellHeader' onclick=byCategory()>Category</button></div>"+"<div <button class='cellHeader' onclick=byPrice()>Price</button></div>"+"<div <button class='cellHeader' onclick=byQuantity()>Quantity</button></div>"
+		for(let i=0;i<len;i++){
+			let name1="<div class='cellNormal'>"+productMaster[i].name+"</div>"
+			let category1="<div class='cellNormal'>"+productMaster[i].category+"</div>"
+			let price1="<div class='cellNormal'>"+productMaster[i].price+"</div>"
+			let quantity1="<div class='cellNormal'>"+productMaster[i].quantity+"</div>"
+			let row="<div>"+name1+category1+price1+quantity1+"</div>"
+			str=str+row
+		}
+		fin=fin+str
+		ele=document.getElementById("div")
+		ele.innerHTML=fin
+	}
+	
+
+
+	function byName(){
+		productMaster.sort(compareName)
+		show();
+	}
+	function byCategory(){
+		productMaster.sort(compareCategory)
+		show();
+	}
+	function byPrice(){
+		productMaster.sort(comparePrice)
+		show();
+	}
+	function byQuantity(){
+		productMaster.sort(compareQuantity)
+		show();
+	}
+
+
+
+	function compareName(p1,p2){
+		let val1=p1.name
+		let val2=p2.name
+		if(val1>val2)
+			return 1
+		if (val1==val2)
+			return 0
+		if(val1<val2)
+			return -1
+	}
+	function compareCategory(p1,p2){
+		let val1=p1.category
+		let val2=p2.category
+		if(val1>val2)
+			return 1
+		if (val1==val2)
+			return 0
+		if(val1<val2)
+			return -1
+	}
+	function comparePrice(p1,p2){
+		let val1=p1.price
+		let val2=p2.price
+		if(val1>val2)
+			return 1
+		if (val1==val2)
+			return 0
+		if(val1<val2)
+			return -1
+	}
+	function compareQuantity(p1,p2){
+		let val1=p1.quantity
+		let val2=p2.quantity
+		if(val1>val2)
+			return 1
+		if (val1==val2)
+			return 0
+		if(val1<val2)
+			return -1
+	}
+</script>
+</html>

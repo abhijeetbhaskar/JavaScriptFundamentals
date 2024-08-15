@@ -1,0 +1,17 @@
+.cellNormal{
+	display: inline-block;
+	width: 120px;
+	text-align: center;
+	background-color: lightgrey;
+	color: black;
+	margin: 1px;
+}
+.cellHeader{
+	display: inline-block;
+	width: 120px;
+	text-align: center;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	margin: 1px;
+}
