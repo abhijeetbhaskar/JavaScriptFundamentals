@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<div id="ProdList"></div>
+	</br><div id="cartItems" class="cartItems"></div>
+</body>
+<script>
+	var products=[{"name":'Pepsi',"price":15},{"name":'Coke',"price":10},{"name":'Miranda',"price":20},{"name":'Sprite',"price":16},{"name":'Minute Maid',"price":25},{"name":'5Star',"price":10},{"name":'KitKat',"price":15},{"name":'Perk',"price":8},{"name":'Dairy Milk',"price":30}]
+	var cart=[];
+	showList();
+	showCart();
+	function showCart(){
+		var lenCart=cart.length
+		if(lenCart==0){
+			var noItem="<b>Cart is empty!</b>"
+			var getCartEle=document.getElementById("cartItems")
+			getCartEle.innerHTML=noItem
+		}
+		else{
+			var cartHasItems="<b>Cart has "+lenCart+" products</b>"
+			for(let i=0;i<lenCart;i++){
+				name2=cart[i].name+","
+				quantity2="quantity in cart = "+cart[i].quantity
+				btn2="<button onclick=remove("+i+")>Remove from Cart</button>"
+				rowCart="<div>"+name2+quantity2+btn2+"</div>"
+				cartHasItems+=rowCart
+			}
+			var getCartEle=document.getElementById("cartItems")
+			getCartEle.innerHTML=cartHasItems
+		}
+	}
+
+	function remove(indexCart){
+		cart[indexCart].quantity-=1
+		if(cart[indexCart].quantity==0){
+			cart.splice(indexCart,1)
+		}
+		showCart();
+	}
+
+	function buy(index){
+		var prodToCheck=products[index].name
+		var presentOrNot=cart.findIndex(n=>checkIfPresent(n,prodToCheck))
+		if(presentOrNot==-1){
+			var obj={"name":products[index].name,"quantity":1}
+			cart.push(obj)
+		}
+		else
+			cart[presentOrNot].quantity+=1
+		showCart()
+	}
+
+	function checkIfPresent(n,prodToCheck){
+		return (n.name==prodToCheck)
+	}
+
+	function showList(){
+		let len=products.length
+		let str="<div>"+"<div class='cellb'>Name</div>"+"<div class='cellb'>Price</div>"+"<div class='cellb'>Click to buy</div>"
+		for(let i=0;i<len;i++){
+			var prodName1="<div class='cellGrey'>"+products[i].name+"</div>"
+			var price1="<div class='cellGrey'>"+products[i].price+"</div>"
+			var btn1="<div class='cellGrey'> <button  onclick=buy("+i+")>buy</div>"
+			
+			let row="<div>"+prodName1+price1+btn1+"</div>"
+			str+=row
+		}
+		var ele=document.getElementById("ProdList")
+		ele.innerHTML=str
+	}
+</script>
+</html>
