@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+	Name: <input type="text" id="idname"></br>
+	Price: <input type="text" id="idprice"></br>
+	Quantity: <input type="text" id="idquantity"></br>
+	Store: <input type="text" id="idstore">
+	</br><button onclick="add()">Add</button></br>
+	<div id="A"></div>
+	</br><div id="B"></div>
+</body>
+<script>
+	var storeA=[],storeB=[]
+
+	function add(){
+		var flag="valid"
+		var prodName=document.getElementById("idname").value
+		var prodPrice=document.getElementById("idprice").value
+		var prodQuantity=document.getElementById("idquantity").value
+		var prodStore=document.getElementById("idstore").value
+		if(prodName.length<5){
+			flag="invalid"
+			alert("Name should be of minimum 5 characters")
+		}
+		
+		else if(prodPrice<=0 || isNaN(prodPrice)){
+			flag="invalid"
+			alert("Product price should be greater than zero.")
+		}
+		
+		
+		else if(prodQuantity<=0 || isNaN(prodQuantity)){
+			flag="invalid"
+			alert("Product quantity should be greater than zero.")
+		}
+		
+		else if(prodStore!="A" && prodStore!="B"){
+			flag="invalid"
+			alert("Invalid Product Store. Choose between A and B.")
+		}
+		else
+			flag="valid"
+		if(flag=="valid"){
+			var obj={"name":prodName,"price":prodPrice,"quantity":prodQuantity}
+			if(prodStore=='A')
+				storeA.push(obj)
+			else
+				storeB.push(obj)
+			show(storeA,"A")
+			show(storeB,"B")
+		}
+		else
+			alert("Invalid data. Enter again.")
+	}
+
+	function sell(idx,index){
+		var st=idx.getAttribute('id')
+		console.log("in sell idx= ",st)
+		console.log("in sell qnt= ",storeA[index].quantity)
+		console.log("in sell= ",index)
+		if(st=='A'){
+			storeA[index].quantity=storeA[index].quantity-1
+			if(storeA[index].quantity==0)
+				storeA.splice(index,1)
+			show(storeA,"A")
+		}
+		console.log("in sell after = ",storeA[index].quantity)
+		if(st=='B'){
+			storeB[index].quantity=storeB[index].quantity-1
+			if(storeB[index].quantity==0)
+				storeB.splice(index,1)
+			show(storeB,"B")
+		}
+	}
+
+	function show(store,idx){
+		let len=store.length
+		let str="<div>"+"<div class='cellb'>Name</div>"+"<div class='cellb'>Price</div>"+"<div class='cellb'>Quantity</div>"+"<div class='cellb'>Click to sell</div>"
+		for(let i=0;i<len;i++){
+			var prodId1="<div class='cellGrey'>"+store[i].name+"</div>"
+			var price1="<div class='cellGrey'>"+store[i].price+"</div>"
+			var quantity1="<div class='cellGrey'>"+store[i].quantity+"</div>"
+			var btn1="<div class='cellGrey' onclick=sell("+idx+","+i+")>Sell</div>"
+			
+			let row="<div>"+prodId1+price1+quantity1+btn1+"</div>"
+			str+=row
+		}
+		var ifNoElement="<div>Store"+idx+"</div>There are no products in the store."
+		var ifElement="<div>Store"+idx+"</div>"+str
+		var ele=document.getElementById(idx)
+		if(store.length==0)
+			ele.innerHTML=ifNoElement
+		else
+			ele.innerHTML=ifElement
+		
+	}
+</script>
+</html>

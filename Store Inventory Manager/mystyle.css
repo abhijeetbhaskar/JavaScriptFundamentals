@@ -1,0 +1,32 @@
+.cellRed{
+	display: inline-block;
+	width: 22%;
+	text-align: center;
+	background-color: red;
+	color: white;
+	margin: 1px;
+}
+.cellGrey{
+	display: inline-block;
+	width: 22%;
+	text-align: center;
+	background-color: grey;
+	color: white;
+	margin: 1px;
+}
+.cellGreen{
+	display: inline-block;
+	width: 22%;
+	text-align: center;
+	background-color: green;
+	color: white;
+	margin: 1px;
+}
+.cellb{
+	display: inline-block;
+	width: 22%;
+	text-align: center;
+	background-color: black;
+	color: white;
+	margin: 1px;
+}
