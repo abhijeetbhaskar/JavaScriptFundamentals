@@ -20,7 +20,7 @@ To run this project locally, follow these steps:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/product-cart-manager.git
+   git clone https://github.com/abhijeetbhaskar/product-cart-manager.git
    cd product-cart-manager
 2. **Open the Project**
 
