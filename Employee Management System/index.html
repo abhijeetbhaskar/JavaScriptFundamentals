@@ -1,0 +1,581 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head> 
+<body> 
+    <button class="btn" onclick="addEmployee()">New Employee</button>&nbsp;&nbsp;
+    <button class="btn" onclick="show(Employees)">All Employees</button>&nbsp;&nbsp;
+    <button class="btn" onclick="fullDump()">Full Dump</button>&nbsp;&nbsp;
+    <button class="btn" onclick="halfDump()">Partial Dump</button>&nbsp;&nbsp;</br></br>
+    <div class="container" id="container"></div>
+</body>  
+<script>
+    var Employees=[{"empcode":'A102',"name":'James',"age":37,"gender":'Male',"department":'Finance',"designation":'Manager',"salary":65000},
+                   {"empcode":'A106',"name":'Mary',"age":24,"gender":'Female',"department":'Technology',"designation":'Vice President',"salary":68000},
+                   {"empcode":'A122',"name":'Bob',"age":23,"gender":'Male',"department":'Marketing',"designation":'Manager',"salary":51000},
+                   {"empcode":'A088',"name":'Julia',"age":33,"gender":'Female',"department":'Finance',"designation":'Vice President',"salary":70000},
+                   {"empcode":'A055',"name":'Steve',"age":27,"gender":'Male',"department":'Technology',"designation":'Manager',"salary":53000},
+                   {"empcode":'A208',"name":'Katherine',"age":29,"gender":'Female',"department":'Marketing',"designation":'Manager',"salary":61000},
+                   {"empcode":'A181',"name":'Edwards',"age":31,"gender":'Male',"department":'Finance',"designation":'Trainee',"salary":49000},
+                   {"empcode":'A029',"name":'Margaret',"age":32,"gender":'Female',"department":'Technology',"designation":'President',"salary":53000},
+                   {"empcode":'A029',"name":'Bill',"age":27,"gender":'Male',"department":'Operations',"designation":'Manager',"salary":58000}]
+
+    // full dump
+    function fullDump(){
+        var fullDumpVal=Employees.map(outFullDump)
+        var ele=document.getElementById("container")
+        ele.innerHTML=''
+        var inpBox=document.createElement("textarea")
+        inpBox.innerHTML=JSON.stringify(fullDumpVal)
+        inpBox.setAttribute("rows",8)
+        inpBox.setAttribute("cols",80)
+        ele.appendChild(inpBox)
+
+    }
+
+    function outFullDump(n){
+        return n.empcode+"::"+n.name+"::"+n.age+"::"+n.gender+"::"+n.department+"::"+n.designation+"::"+n.salary
+    }
+
+    //half dump
+    function halfDump(){
+        var halfDumpVal=Employees.map(outHalfDump)
+        var ele=document.getElementById("container")
+        ele.innerHTML=''
+        var inpBox=document.createElement("textarea")
+        inpBox.innerHTML=JSON.stringify(halfDumpVal)
+        inpBox.setAttribute("rows",6)
+        inpBox.setAttribute("cols",50)
+        ele.appendChild(inpBox)
+
+    }
+
+    function outHalfDump(n){
+        return "Code="+n.empcode+",Name="+n.name+",Age="+n.age
+    }
+
+
+
+
+    //Add Employee
+    function addEmployee(){
+        var ele=document.getElementById("container")
+        ele.innerHTML=''
+
+        var form=document.createElement("div")
+        form.setAttribute("style","margin-left:100px;")
+
+        var textNode1=document.createElement("textnode")
+        textNode1.innerHTML="Employee Code"
+        form.appendChild(textNode1)
+        var codeInput=document.createElement("input")
+        codeInput.setAttribute("type","text")
+        codeInput.setAttribute("id","code")
+        form.appendChild(codeInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode2=document.createElement("textnode")
+        textNode2.innerHTML="Name"
+        form.appendChild(textNode2)
+        var nameInput=document.createElement("input")
+        nameInput.setAttribute("id","name")
+        nameInput.setAttribute=("type","text")
+        form.appendChild(nameInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode3=document.createElement("textnode")
+        textNode3.innerHTML="Age"
+        form.appendChild(textNode3)
+        var ageInput=document.createElement("input")
+        ageInput.setAttribute("type","number")
+        ageInput.setAttribute("id","age")
+        form.appendChild(ageInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode4=document.createElement("textnode")
+        textNode4.innerHTML="Gender"
+        form.appendChild(textNode4)
+
+        var genderInput1=document.createElement("input")
+        genderInput1.setAttribute("type","radio")
+        genderInput1.setAttribute("id","male")
+        genderInput1.setAttribute("name","gender")
+        var genderText1=document.createElement("textnode")
+        genderText1.innerHTML="Male"
+        form.appendChild(genderInput1)
+        form.appendChild(genderText1)
+
+        var genderInput2=document.createElement("input")
+        genderInput2.setAttribute("type","radio")
+        genderInput2.setAttribute("name","gender")
+        genderInput2.setAttribute("id","female")
+        var genderText2=document.createElement("textnode")
+        genderText2.innerHTML="Female"
+        form.appendChild(genderInput2)
+        form.appendChild(genderText2)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+
+        var textNode5=document.createElement("textnode")
+        textNode5.innerHTML="Department"
+        form.appendChild(textNode5)
+        var departmentInput=document.createElement("select")
+        departmentInput.innerHTML="<option selected disabled value='notSelected'>Choose Department</option><option>Finance</option><option>Technology</option><option>Marketing</option><option>Operations</option>"
+        departmentInput.setAttribute("id","department")
+        form.appendChild(departmentInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode6=document.createElement("textnode")
+        textNode6.innerHTML="Designation"
+        form.appendChild(textNode6)
+        var designationInput=document.createElement("select")
+        designationInput.innerHTML="<option selected disabled value='notSelected'>Choose Designation</option><option>Trainee</option><option>Manager</option><option>Vice President</option><option>President</option>"
+        designationInput.setAttribute("id","designation")
+        form.appendChild(designationInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+
+        var textNode7=document.createElement("textnode")
+        textNode7.innerHTML="Salary"
+        form.appendChild(textNode7)
+        var salaryInput=document.createElement("input")
+        salaryInput.setAttribute("type","number")
+        salaryInput.setAttribute("id","salary")
+        form.appendChild(salaryInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+
+        var addButton= document.createElement("button")
+        addButton.innerHTML="Add New Employee"
+        addButton.className="btn"
+        addButton.setAttribute("onclick","addToEmployees()")
+        form.appendChild(addButton)
+
+
+        ele.appendChild(form)
+
+    }
+
+
+    //forming a JSON and pushing it to the array Employees
+    function addToEmployees(){
+        var empName=document.getElementById('name').value
+        var empcode=document.getElementById('code').value
+        var check=checkEmpCode(empcode)
+        var empAge=document.getElementById('age').value
+        var male=document.getElementById('male').checked
+        var female=document.getElementById('female').checked
+        var empDepartment=document.getElementById('department').value
+        // validating department
+
+        if(empDepartment=="notSelected"){
+            alert("Select Department.")
+            return
+        }
+        var empDesignation=document.getElementById('designation').value
+
+        //validating designation
+        if(empDesignation=="notSelected"){
+            alert("Select Designation.")
+            return
+        }
+        var empSalary=document.getElementById('salary').value
+        //validating salary
+        if(empSalary<0){
+            alert("Please Enter salary positve number as salary.")
+            return
+        }
+
+        if(male==true)
+            var empToAdd={"empcode":empcode,"name":empName,"age":empAge,"gender":"Male","department":empDepartment,"designation":empDesignation,"salary":empSalary}
+        else if(female==true)
+            var empToAdd={"empcode":empcode,"name":empName,"age":empAge,"gender":"Female","department":empDepartment,"designation":empDesignation,"salary":empSalary}
+        else{
+            alert("Please select gender.")
+            return
+        }
+
+        if(check==false){
+            alert("Employee Already Exists.")
+            return
+        }
+        if(check==false){
+            alert("Employee Already Exists.")
+            return
+        }
+        else{
+            Employees.push(empToAdd)
+            alert("Employee details have been added.")
+        }
+    }
+
+    //To validate employee code
+    function checkEmpCode(code) {
+        var flag=true;
+        for(var i=0;i<Employees.length;i++){
+            if(Employees[i].empcode==code){
+                flag=false
+                break;
+            }
+        }
+        return flag;
+        // body...
+    }
+
+
+    //Filter
+    function fnFilter(){
+        var valDept=document.getElementById('filterDept').value
+        var valDesig=document.getElementById('filterDesig').value
+        if (valDesig=="notSelected" && valDept=="notSelected")
+            show(Employees)
+        else if(valDept!="notSelected" && valDesig=="notSelected")
+            var filteredEmployees=Employees.filter(n=>filterByDept(n,valDept))
+        else if(valDept=="notSelected" && valDesig!="notSelected")
+            var filteredEmployees=Employees.filter(n=>filterByDesig(n,valDesig))
+        else if(valDept!="notSelected" && valDesig!="notSelected")
+            var filteredEmployees=Employees.filter(n=>filterByBoth(n,valDept,valDesig))
+
+        show(filteredEmployees)
+
+    }
+
+    function filterByDept(n,dept){
+        if(n.department==dept)
+            return true
+        else
+            return false
+    }
+
+    function filterByDesig(n,desig){
+        if(n.designation==desig)
+            return true
+        else
+            return false
+    }
+
+    function filterByBoth(n,dept,desig){
+        if(n.department==dept && n.designation==desig)
+            return true
+        else
+            return false
+    }
+
+    // Filter Ends Here.
+
+    function show(Employ){
+
+        let form="<div>Filter Employees By"+"<select id='filterDept'><option selected value='notSelected'>Choose Department</option><option>Finance</option><option>Technology</option><option>Marketing</option><option>Operations</option></select>"+"<select id='filterDesig'><option selected  value='notSelected'>Choose Designation</option><option>Trainee</option><option>Manager</option><option>Vice President</option><option>President</option></select>"+"<button class='btn' onclick='fnFilter()'>Filter</button>"
+
+
+        var str="<div>"+"<div class='showHeader' onclick='byEmpcode()'>Employee Code</div>"+"<div class='showHeader' onclick='byName()'>Name</div>"+"<div class='showHeader' onclick='byAge()'>Age</div>"+"<div class='showHeader' onclick='byGender()'>Gender</div>"+"<div class='showHeader' onclick='byDepartment()'>Department</div>"+"<div class='showHeader' onclick='byDesignation()'>Designation</div>"+"<div class='showHeader' onclick='bySalary()'>Salary</div>"+"<div class='showHeader'>Click to Edit</div>"
+        let len=Employ.length
+        var row=''
+        for(var i=0;i<len;i++){
+            let empcode1="<div class='showTable'>"+Employ[i].empcode+"</div>"
+            let name1="<div class='showTable'>"+Employ[i].name+"</div>"
+            let age1="<div class='showTable'>"+Employ[i].age+"</div>"
+            let gender1="<div class='showTable'>"+Employ[i].gender+"</div>"
+            let department1="<div class='showTable'>"+Employ[i].department+"</div>"
+            let designation1="<div class='showTable'>"+Employ[i].designation+"</div>"
+            let salary1="<div class='showTable'>"+Employ[i].salary+"</div>"
+            let edit1="<div class='showTable'>"+"<button class='btn'onclick=edit("+i+")>Edit</button>"+"</div>"
+            row+="<div>"+empcode1+name1+age1+gender1+department1+designation1+salary1+edit1+"</div>"
+        }
+        str+=row
+        var ele=document.getElementById('container')
+        ele.innerHTML=''
+        ele.innerHTML=form+str
+    }
+
+    //Edit function
+
+    function edit(idx){
+        var ele=document.getElementById("container")
+        ele.innerHTML=''
+
+        var form=document.createElement("div")
+        form.setAttribute("style","margin-left:100px;")
+
+        var textNode1=document.createElement("textnode")
+        textNode1.innerHTML="Employee Code"
+        form.appendChild(textNode1)
+        var codeInput=document.createElement("input")
+        codeInput.setAttribute("type","text")
+        codeInput.setAttribute("id","code")
+        codeInput.value=Employees[idx].empcode
+        codeInput.setAttribute("readonly","true")
+        form.appendChild(codeInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode2=document.createElement("textnode")
+        textNode2.innerHTML="Name"
+        form.appendChild(textNode2)
+        var nameInput=document.createElement("input")
+        nameInput.setAttribute("id","name")
+        nameInput.setAttribute=("type","text")
+        nameInput.value=Employees[idx].name
+        form.appendChild(nameInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode3=document.createElement("textnode")
+        textNode3.innerHTML="Age"
+        form.appendChild(textNode3)
+        var ageInput=document.createElement("input")
+        ageInput.setAttribute("type","number")
+        ageInput.setAttribute("id","age")
+        ageInput.value=Employees[idx].age
+        form.appendChild(ageInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode4=document.createElement("textnode")
+        textNode4.innerHTML="Gender"
+        form.appendChild(textNode4)
+
+        var genderInput1=document.createElement("input")
+        genderInput1.setAttribute("type","radio")
+        genderInput1.setAttribute("id","male")
+        genderInput1.setAttribute("name","gender")
+        var genderText1=document.createElement("textnode")
+        genderText1.innerHTML="Male"
+        if(Employees[idx].gender=="Male")
+            genderInput1.setAttribute("checked","true")
+        form.appendChild(genderInput1)
+        form.appendChild(genderText1)
+
+        var genderInput2=document.createElement("input")
+        genderInput2.setAttribute("type","radio")
+        genderInput2.setAttribute("name","gender")
+        genderInput2.setAttribute("id","female")
+        var genderText2=document.createElement("textnode")
+        genderText2.innerHTML="Female"
+        if(Employees[idx].gender=="Female")
+            genderInput2.setAttribute("checked","true")
+        form.appendChild(genderInput2)
+        form.appendChild(genderText2)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+
+        var textNode5=document.createElement("textnode")
+        textNode5.innerHTML="Department"
+        form.appendChild(textNode5)
+        var departmentInput=document.createElement("select")
+        departmentInput.innerHTML="<option disabled value='notSelected'>Choose Department</option>"
+        if(Employees[idx].department=="Finance")
+            departmentInput.innerHTML+="<option selected>Finance</option><option>Technology</option><option>Marketing</option><option>Operations</option>"
+        else if(Employees[idx].department=="Technology")
+            departmentInput.innerHTML+="<option>Finance</option><option selected>Technology</option><option>Marketing</option><option>Operations</option>"
+        else if(Employees[idx].department=="Marketing")
+            departmentInput.innerHTML+="<option>Finance</option><option>Technology</option><option selected>Marketing</option><option>Operations</option>"
+        else if(Employees[idx].department=="Operations")
+            departmentInput.innerHTML+="<option>Finance</option><option>Technology</option><option>Marketing</option><option selected>Operations</option>"
+       
+        departmentInput.setAttribute("id","department")
+        form.appendChild(departmentInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+        var textNode6=document.createElement("textnode")
+        textNode6.innerHTML="Designation"
+        form.appendChild(textNode6)
+        var designationInput=document.createElement("select")
+        designationInput.innerHTML="<option disabled value='notSelected'>Choose Designation</option>"
+        if(Employees[idx].designation=="Manager")
+            designationInput.innerHTML+= "<option>Trainee</option><option selected>Manager</option><option>Vice President</option><option>President</option>"
+        else if(Employees[idx].designation=="Trainee")
+            designationInput.innerHTML+= "<option selected>Trainee</option><option>Manager</option><option>Vice President</option><option>President</option>"
+        else if(Employees[idx].designation=="Vice President")
+            designationInput.innerHTML+= "<option>Trainee</option><option>Manager</option><option selected>Vice President</option><option>President</option>"
+        else if (Employees[idx].designation=="President")
+            designationInput.innerHTML+= "<option>Trainee</option><option>Manager</option><option>Vice President</option><option selected>President</option>"
+        
+        designationInput.setAttribute("id","designation")
+        form.appendChild(designationInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+
+        var textNode7=document.createElement("textnode")
+        textNode7.innerHTML="Salary"
+        form.appendChild(textNode7)
+        var salaryInput=document.createElement("input")
+        salaryInput.setAttribute("type","number")
+        salaryInput.setAttribute("id","salary")
+        salaryInput.value=Employees[idx].salary
+        form.appendChild(salaryInput)
+        var br=document.createElement("br")
+        form.appendChild(br)
+
+
+        var addButton= document.createElement("button")
+        addButton.innerHTML="Edit Employee Details"
+        addButton.className="btn"
+        addButton.setAttribute("onclick","editedEmployees("+idx+")")
+        form.appendChild(addButton)
+
+
+        ele.appendChild(form)
+    }
+
+
+    function editedEmployees(idx){
+        var empName=document.getElementById('name').value
+        console.log("name",empName)
+        var empcode=document.getElementById('code').value
+        var empAge=document.getElementById('age').value
+        var male=document.getElementById('male').checked
+        var female=document.getElementById('female').checked
+        var empDepartment=document.getElementById('department').value
+        // validating department
+
+        if(empDepartment=="notSelected"){
+            alert("Select Department.")
+            return
+        }
+        var empDesignation=document.getElementById('designation').value
+
+        //validating designation
+        if(empDesignation=="notSelected"){
+            alert("Select Designation.")
+            return
+        }
+        var empSalary=document.getElementById('salary').value
+        //validating salary
+        if(empSalary<0){
+            alert("Please Enter salary positve number as salary.")
+            return
+        }
+
+        if(male==true)
+            var empToAdd={"empcode":empcode,"name":empName,"age":empAge,"gender":"Male","department":empDepartment,"designation":empDesignation,"salary":empSalary}
+        else if(female==true)
+            var empToAdd={"empcode":empcode,"name":empName,"age":empAge,"gender":"Female","department":empDepartment,"designation":empDesignation,"salary":empSalary}
+        else{
+            alert("Please select gender.")
+            return
+        }
+        Employees.splice(idx,1,empToAdd)
+        alert("Employee details have been edited.")
+        show(Employees)
+       
+    }
+
+
+    // Sorting 
+    function byEmpcode(){
+        Employees.sort(compareEmpcode)
+        show(Employees);
+    }
+    function compareEmpcode(p1,p2){
+        let val1=p1.empcode
+        let val2=p2.empcode
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+
+    function byName(){
+        Employees.sort(compareName)
+        show(Employees);
+    }
+    function compareName(p1,p2){
+        let val1=p1.name
+        let val2=p2.name
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+
+    function byAge(){
+        Employees.sort(compareAge)
+        show(Employees);
+    }
+    function compareAge(p1,p2){
+        let val1=p1.age
+        let val2=p2.age
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+
+    function byGender(){
+        Employees.sort(compareGender)
+        show(Employees);
+    }
+    function compareGender(p1,p2){
+        let val1=p1.gender
+        let val2=p2.gender
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+
+    function byDepartment(){
+        Employees.sort(compareDepartment)
+        show(Employees);
+    }
+    function compareDepartment(p1,p2){
+        let val1=p1.department
+        let val2=p2.department
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+
+    function byDesignation(){
+        Employees.sort(compareDesignation)
+        show(Employees);
+    }
+    function compareDesignation(p1,p2){
+        let val1=p1.designation
+        let val2=p2.designation
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+
+    function bySalary(){
+        Employees.sort(compareSalary)
+        show(Employees);
+    }
+    function compareSalary(p1,p2){
+        let val1=p1.salary
+        let val2=p2.salary
+        if(val1>val2)
+            return 1
+        if (val1==val2)
+            return 0
+        if(val1<val2)
+            return -1
+    }
+</script>  
+</html>
