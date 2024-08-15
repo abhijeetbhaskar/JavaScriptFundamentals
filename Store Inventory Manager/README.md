@@ -7,3 +7,5 @@ Product Validation: Ensures that product names are at least 5 characters long, a
 Dynamic Inventory Display: Shows the current inventory of products for each store, with options to sell items directly from the displayed list.
 Real-Time Updates: Automatically updates the display to reflect changes in inventory, including handling the removal of products once their quantity reaches zero.
 User-Friendly Interface: Provides input fields for adding new products and displays inventory in an easy-to-read format, with sell buttons for managing stock.
+
+CodeSandBox Link: https://jsm52l.csb.app/
